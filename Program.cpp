@@ -39,16 +39,16 @@ shape* shape::In(ifstream& ifst) {
     sp->InData(ifst);
     return sp;
 }
-// Инициализация контейнера
+// Г€Г­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГї ГЄГ®Г­ГІГҐГ©Г­ГҐГ°Г 
 container::container() : len(0) { }
-// Очистка контейнера от элементов (освобождение памяти)
+// ГЋГ·ГЁГ±ГІГЄГ  ГЄГ®Г­ГІГҐГ©Г­ГҐГ°Г  Г®ГІ ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў (Г®Г±ГўГ®ГЎГ®Г¦Г¤ГҐГ­ГЁГҐ ГЇГ Г¬ГїГІГЁ)
 void container::Clear()
 {
     for (int i = 0; i < len; i++)
         delete cont[i];
     len = 0;
 }
-// Ввод содержимого контейнера из указанного потока
+// Г‚ГўГ®Г¤ Г±Г®Г¤ГҐГ°Г¦ГЁГ¬Г®ГЈГ® ГЄГ®Г­ГІГҐГ©Г­ГҐГ°Г  ГЁГ§ ГіГЄГ Г§Г Г­Г­Г®ГЈГ® ГЇГ®ГІГ®ГЄГ 
 void container::In(ifstream& ifst)
 {
 
@@ -65,7 +65,7 @@ void container::In(ifstream& ifst)
         }
     }
 }
-// Вывод содержимого контейнера в указанный поток
+// Г‚Г»ГўГ®Г¤ Г±Г®Г¤ГҐГ°Г¦ГЁГ¬Г®ГЈГ® ГЄГ®Г­ГІГҐГ©Г­ГҐГ°Г  Гў ГіГЄГ Г§Г Г­Г­Г»Г© ГЇГ®ГІГ®ГЄ
 void container::Out(ofstream& ofst)
 {
     ofst << "Container contains " << len << " elements." << endl;
@@ -75,5 +75,26 @@ void container::Out(ofstream& ofst)
         ofst << i << ": ";
         cout << i << ": ";
         cont[i]->Out(ofst);
+    }
+}
+void shape::OutComplex(ofstream& ofst) 
+{
+    ofst << endl; // РїСѓСЃС‚Р°СЏ СЃС‚СЂРѕРєР°
+    cout << endl;
+}
+// Р’С‹РІРѕРґ РґР°РЅРЅС‹С… С‚РѕР»СЊРєРѕ РґР»СЏ РєРѕРјРїР»РµРєСЃРЅРѕРіРѕ С‡РёСЃР»Р°
+void ccomplex::OutComplex(ofstream& ofst) 
+{
+    Out(ofst);
+}
+// Р’С‹РІРѕРґ СЃРѕРґРµСЂР¶РёРјРѕРіРѕ РєРѕРЅС‚РµР№РЅРµСЂР°
+void container::OutComplex(ofstream& ofst) 
+{
+    ofst << "Only Complex." << endl;
+    for (int i = 0; i < len; i++) 
+    {
+        ofst << i << ": ";
+        cout << i << ": ";
+        cont[i]->OutComplex(ofst);
     }
 }
