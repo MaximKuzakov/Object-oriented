@@ -16,11 +16,21 @@ void ccomplex::Out(ofstream& ofst)
 void fractions::InData(ifstream& ifst)
 {
     ifst >> x >> y;
+    int amount;
+    ifst >> amount;
+    for (int i = 0; i < amount; i++)
+    {
+        char sb;
+        ifst >> sb;
+        unit.push_back(sb);
+    }
 }
 void fractions::Out(ofstream& ofst)
 {
-    ofst << "It is a Fraction: " << x << "/" << y << endl;
-    cout << "It is a Fraction: " << x << "/" << y << endl;
+    ofst << "It is a Fraction: " << x << "/" << y << " ";
+    cout << "It is a Fraction: " << x << "/" << y << " ";
+    cout << unit << endl;
+    ofst << unit << endl;
 }
 shape* shape::In(ifstream& ifst) {
     shape* sp;
@@ -39,16 +49,16 @@ shape* shape::In(ifstream& ifst) {
     sp->InData(ifst);
     return sp;
 }
-// Инициализация контейнера
+// Г€Г­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГї ГЄГ®Г­ГІГҐГ©Г­ГҐГ°Г 
 container::container() : len(0) { }
-// Очистка контейнера от элементов (освобождение памяти)
+// ГЋГ·ГЁГ±ГІГЄГ  ГЄГ®Г­ГІГҐГ©Г­ГҐГ°Г  Г®ГІ ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў (Г®Г±ГўГ®ГЎГ®Г¦Г¤ГҐГ­ГЁГҐ ГЇГ Г¬ГїГІГЁ)
 void container::Clear()
 {
     for (int i = 0; i < len; i++)
         delete cont[i];
     len = 0;
 }
-// Ввод содержимого контейнера из указанного потока
+// Г‚ГўГ®Г¤ Г±Г®Г¤ГҐГ°Г¦ГЁГ¬Г®ГЈГ® ГЄГ®Г­ГІГҐГ©Г­ГҐГ°Г  ГЁГ§ ГіГЄГ Г§Г Г­Г­Г®ГЈГ® ГЇГ®ГІГ®ГЄГ 
 void container::In(ifstream& ifst)
 {
 
@@ -65,7 +75,7 @@ void container::In(ifstream& ifst)
         }
     }
 }
-// Вывод содержимого контейнера в указанный поток
+// Г‚Г»ГўГ®Г¤ Г±Г®Г¤ГҐГ°Г¦ГЁГ¬Г®ГЈГ® ГЄГ®Г­ГІГҐГ©Г­ГҐГ°Г  Гў ГіГЄГ Г§Г Г­Г­Г»Г© ГЇГ®ГІГ®ГЄ
 void container::Out(ofstream& ofst)
 {
     ofst << "Container contains " << len << " elements." << endl;
