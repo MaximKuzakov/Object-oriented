@@ -88,3 +88,23 @@ void container::Out(ofstream& ofst)
         cout << "Real equivalent = " << cont[i]->Real() << endl;
     }
 }
+}// сравнение двух объектов
+bool shape::Compare(shape& other) 
+{
+    return Real() < other.Real();
+}
+void container::Sort() 
+{
+    for (int i = 0; i < len - 1; i++) 
+    {
+        for (int j = i + 1; j < len; j++) 
+        {
+            if (cont[i]->Compare(*cont[j])) 
+            {
+                shape* tmp = cont[i];
+                cont[i] = cont[j];
+                cont[j] = tmp;
+            }
+        }
+    }
+}
