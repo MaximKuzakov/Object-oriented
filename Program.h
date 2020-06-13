@@ -2,40 +2,49 @@
 #include <fstream>
 using namespace std;
 
-// Класс, обобщающает все имеющиеся фигуры.
-// Является абстрактным, обеспечивая, тем самым проверку интерфейса
+// ГЉГ«Г Г±Г±, Г®ГЎГ®ГЎГ№Г ГѕГ№Г ГҐГІ ГўГ±ГҐ ГЁГ¬ГҐГѕГ№ГЁГҐГ±Гї ГґГЁГЈГіГ°Г».
+// ГџГўГ«ГїГҐГІГ±Гї Г ГЎГ±ГІГ°Г ГЄГІГ­Г»Г¬, Г®ГЎГҐГ±ГЇГҐГ·ГЁГўГ Гї, ГІГҐГ¬ Г±Г Г¬Г»Г¬ ГЇГ°Г®ГўГҐГ°ГЄГі ГЁГ­ГІГҐГ°ГґГҐГ©Г±Г 
 class shape {
 public:
-	// иденитфикация, порождение и ввод фигуры из потока
+	// ГЁГ¤ГҐГ­ГЁГІГґГЁГЄГ Г¶ГЁГї, ГЇГ®Г°Г®Г¦Г¤ГҐГ­ГЁГҐ ГЁ ГўГўГ®Г¤ ГґГЁГЈГіГ°Г» ГЁГ§ ГЇГ®ГІГ®ГЄГ 
 	static shape* In(ifstream& ifst);
-	virtual void InData(ifstream& ifst) = 0; // ввод
-	virtual void Out(ofstream& ofst) = 0; // вывод
+	virtual void InData(ifstream& ifst) = 0; // ГўГўГ®Г¤
+	virtual void Out(ofstream& ofst) = 0; // ГўГ»ГўГ®Г¤
 };
 class ccomplex: public shape
 {
-	double real, imag; // действительная и мнимая части
+	double real, imag; // Г¤ГҐГ©Г±ГІГўГЁГІГҐГ«ГјГ­Г Гї ГЁ Г¬Г­ГЁГ¬Г Гї Г·Г Г±ГІГЁ
 	public:
-		void InData(ifstream& ifst); // ввод
-		void Out(ofstream& ofst); // вывод
-		ccomplex() {} // создание без инициализации.
+		void InData(ifstream& ifst); // ГўГўГ®Г¤
+		void Out(ofstream& ofst); // ГўГ»ГўГ®Г¤
+		ccomplex() {} // Г±Г®Г§Г¤Г Г­ГЁГҐ ГЎГҐГ§ ГЁГ­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГЁ.
 };
 class fractions: public shape
 {
-	int x, y; // числитель и знаменатель
+	int x, y; // Г·ГЁГ±Г«ГЁГІГҐГ«Гј ГЁ Г§Г­Г Г¬ГҐГ­Г ГІГҐГ«Гј
 	public:
-		void InData(ifstream& ifst); // ввод
-		void Out(ofstream& ofst); // вывод
-		fractions() {} // создание без инициализации.
+		void InData(ifstream& ifst); // ГўГўГ®Г¤
+		void Out(ofstream& ofst); // ГўГ»ГўГ®Г¤
+		fractions() {} // Г±Г®Г§Г¤Г Г­ГЁГҐ ГЎГҐГ§ ГЁГ­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГЁ.
 };
-// Простейший контейнер на основе одномерного массива
+class polar_coordinates : public shape
+{
+	double angle;
+	int distance;
+	public:
+		void InData(ifstream& ifst); // РІРІРѕРґ
+		void Out(ofstream& ofst); // РІС‹РІРѕРґ
+		polar_coordinates() {} // СЃРѕР·РґР°РЅРёРµ Р±РµР· РёРЅРёС†РёР°Р»РёР·Р°С†РёРё.
+};
+// ГЏГ°Г®Г±ГІГҐГ©ГёГЁГ© ГЄГ®Г­ГІГҐГ©Г­ГҐГ° Г­Г  Г®Г±Г­Г®ГўГҐ Г®Г¤Г­Г®Г¬ГҐГ°Г­Г®ГЈГ® Г¬Г Г±Г±ГЁГўГ 
 class container {
-	enum { max_len = 100 }; // максимальная длина
-	int len; // текущая длина
+	enum { max_len = 100 }; // Г¬Г ГЄГ±ГЁГ¬Г Г«ГјГ­Г Гї Г¤Г«ГЁГ­Г 
+	int len; // ГІГҐГЄГіГ№Г Гї Г¤Г«ГЁГ­Г 
 	shape *cont[max_len];
 	public: 
-		void In(ifstream& ifst); // ввод
-		void Out(ofstream& ofst); // вывод
-		void Clear(); // очистка контейнера от фигур
-		container(); // инициализация контейнера
-		~container() { Clear(); } // утилизация контейнера
+		void In(ifstream& ifst); // ГўГўГ®Г¤
+		void Out(ofstream& ofst); // ГўГ»ГўГ®Г¤
+		void Clear(); // Г®Г·ГЁГ±ГІГЄГ  ГЄГ®Г­ГІГҐГ©Г­ГҐГ°Г  Г®ГІ ГґГЁГЈГіГ°
+		container(); // ГЁГ­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГї ГЄГ®Г­ГІГҐГ©Г­ГҐГ°Г 
+		~container() { Clear(); } // ГіГІГЁГ«ГЁГ§Г Г¶ГЁГї ГЄГ®Г­ГІГҐГ©Г­ГҐГ°Г 
 };
