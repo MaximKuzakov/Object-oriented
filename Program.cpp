@@ -130,3 +130,25 @@ void container::Sort()
         }
     }
 }
+
+void shape::OutComplex(ofstream& ofst) 
+{
+    ofst << endl; // пустая строка
+    cout << endl;
+}
+// Вывод данных только для комплексного числа
+void ccomplex::OutComplex(ofstream& ofst) 
+{
+    Out(ofst);
+}
+// Вывод содержимого контейнера
+void container::OutComplex(ofstream& ofst) 
+{
+    ofst << "Only Complex." << endl;
+    for (int i = 0; i < len; i++) 
+    {
+        ofst << i << ": ";
+        cout << i << ": ";
+        cont[i]->OutComplex(ofst);
+    }
+}

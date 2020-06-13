@@ -9,6 +9,7 @@ class shape {
 public:
 	// èäåíèòôèêàöèÿ, ïîðîæäåíèå è ââîä ôèãóðû èç ïîòîêà
 	static shape* In(ifstream& ifst);
+	virtual void OutComplex(ofstream& ofst); // виртуальная функция вывода только комплексных чисел
 	virtual void InData(ifstream& ifst) = 0; // ââîä
 	virtual void Out(ofstream& ofst) = 0; // âûâîä
 	virtual double Real() = 0; // новая функция (2.3)
@@ -23,6 +24,7 @@ class ccomplex: public shape
 		void Out(ofstream& ofst); // âûâîä
 		double Real(); // приведение к действительному
 		ccomplex() {} // ñîçäàíèå áåç èíèöèàëèçàöèè.
+		void OutComplex(ofstream& ofst);
 };
 class fractions: public shape
 {
@@ -56,4 +58,5 @@ class container {
 		void Clear(); // î÷èñòêà êîíòåéíåðà îò ôèãóð
 		container(); // èíèöèàëèçàöèÿ êîíòåéíåðà
 		~container() { Clear(); } // óòèëèçàöèÿ êîíòåéíåðà
+		void OutComplex(ofstream& ofst);
 };
