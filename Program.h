@@ -12,6 +12,8 @@ public:
 	virtual void InData(ifstream& ifst) = 0; // ââîä
 	virtual void Out(ofstream& ofst) = 0; // âûâîä
 	virtual double Real() = 0; // новая функция (2.3)
+	// сравнение двух объектов
+	bool Compare(shape& other);
 };
 class ccomplex: public shape
 {
@@ -50,6 +52,7 @@ class container {
 		void In(ifstream& ifst); // ââîä
 		void Out(ofstream& ofst); // âûâîä
 		void Real(ofstream& ofst); 
+		void Sort(); // сортировка контейнерa
 		void Clear(); // î÷èñòêà êîíòåéíåðà îò ôèãóð
 		container(); // èíèöèàëèçàöèÿ êîíòåéíåðà
 		~container() { Clear(); } // óòèëèçàöèÿ êîíòåéíåðà
