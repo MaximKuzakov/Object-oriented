@@ -11,6 +11,7 @@ public:
 	static shape* In(ifstream& ifst);
 	virtual void InData(ifstream& ifst) = 0; // ââîä
 	virtual void Out(ofstream& ofst) = 0; // âûâîä
+	virtual double Real() = 0; // новая функция (2.3)
 };
 class ccomplex: public shape
 {
@@ -18,6 +19,7 @@ class ccomplex: public shape
 	public:
 		void InData(ifstream& ifst); // ââîä
 		void Out(ofstream& ofst); // âûâîä
+		double Real(); // приведение к действительному
 		ccomplex() {} // ñîçäàíèå áåç èíèöèàëèçàöèè.
 };
 class fractions: public shape
@@ -27,6 +29,7 @@ class fractions: public shape
 	public:
 		void InData(ifstream& ifst); // ââîä
 		void Out(ofstream& ofst); // âûâîä
+		double Real(); // приведение к действительному
 		fractions() {} // ñîçäàíèå áåç èíèöèàëèçàöèè.
 };
 class polar_coordinates : public shape
@@ -46,6 +49,7 @@ class container {
 	public: 
 		void In(ifstream& ifst); // ââîä
 		void Out(ofstream& ofst); // âûâîä
+		void Real(ofstream& ofst); 
 		void Clear(); // î÷èñòêà êîíòåéíåðà îò ôèãóð
 		container(); // èíèöèàëèçàöèÿ êîíòåéíåðà
 		~container() { Clear(); } // óòèëèçàöèÿ êîíòåéíåðà

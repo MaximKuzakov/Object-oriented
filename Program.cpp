@@ -13,6 +13,10 @@ void ccomplex::Out(ofstream& ofst)
     ofst << "It is a Complex: " << real << " + " << imag << "i" << endl;
     cout << "It is a Complex: " << real << " + " << imag << "i" << endl;
 }
+double ccomplex::Real()
+{
+    return sqrt(pow(imag, 2) + pow(real, 2));
+}
 void fractions::InData(ifstream& ifst)
 {
     ifst >> x >> y;
@@ -40,6 +44,11 @@ void polar_coordinates::Out(ofstream& ofst)
 {
     ofst << "These are polar coordinates: " << angle << " (angle), " << distance << " (distance)" << endl;
     cout << "These are polar coordinates: " << angle << " (angle), " << distance << " (distance)" << endl;
+}
+double fractions::Real()
+{
+    double result = (double)x;
+    return result / y;
 }
 shape* shape::In(ifstream& ifst) {
     shape* sp;
@@ -97,5 +106,7 @@ void container::Out(ofstream& ofst)
         ofst << i << ": ";
         cout << i << ": ";
         cont[i]->Out(ofst);
+        ofst << "Real equivalent = " << cont[i]->Real() << endl;
+        cout << "Real equivalent = " << cont[i]->Real() << endl;
     }
 }
