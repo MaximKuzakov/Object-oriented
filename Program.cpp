@@ -16,11 +16,21 @@ void ccomplex::Out(ofstream& ofst)
 void fractions::InData(ifstream& ifst)
 {
     ifst >> x >> y;
+    int amount;
+    ifst >> amount;
+    for (int i = 0; i < amount; i++)
+    {
+        char sb;
+        ifst >> sb;
+        unit.push_back(sb);
+    }
 }
 void fractions::Out(ofstream& ofst)
 {
-    ofst << "It is a Fraction: " << x << "/" << y << endl;
-    cout << "It is a Fraction: " << x << "/" << y << endl;
+    ofst << "It is a Fraction: " << x << "/" << y << " ";
+    cout << "It is a Fraction: " << x << "/" << y << " ";
+    cout << unit << endl;
+    ofst << unit << endl;
 }
 void polar_coordinates::InData(ifstream& ifst)
 {

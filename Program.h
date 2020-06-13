@@ -1,5 +1,6 @@
 #pragma once
 #include <fstream>
+#include <string>
 using namespace std;
 
 // Êëàññ, îáîáùàþùàåò âñå èìåþùèåñÿ ôèãóðû.
@@ -22,6 +23,7 @@ class ccomplex: public shape
 class fractions: public shape
 {
 	int x, y; // ÷èñëèòåëü è çíàìåíàòåëü
+	std::string unit; // добавление нового поля в специализацию
 	public:
 		void InData(ifstream& ifst); // ââîä
 		void Out(ofstream& ofst); // âûâîä
