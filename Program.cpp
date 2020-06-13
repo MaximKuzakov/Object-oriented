@@ -50,6 +50,10 @@ double fractions::Real()
     double result = (double)x;
     return result / y;
 }
+double polar_coordinates::Real()
+{
+    return 0.0;
+}
 shape* shape::In(ifstream& ifst) {
     shape* sp;
     int k;
