@@ -1,13 +1,12 @@
 #pragma once
 #include <fstream>
 #include <string>
+#include <iostream>
+#include <cmath>
 using namespace std;
 
-// Êëàññ, îáîáùàþùàåò âñå èìåþùèåñÿ ôèãóðû.
-// ßâëÿåòñÿ àáñòðàêòíûì, îáåñïå÷èâàÿ, òåì ñàìûì ïðîâåðêó èíòåðôåéñà
 class shape {
 public:
-	// èäåíèòôèêàöèÿ, ïîðîæäåíèå è ââîä ôèãóðû èç ïîòîêà
 	static shape* In(ifstream& ifst);
 	virtual void OutComplex(ofstream& ofst); // виртуальная функция вывода только комплексных чисел
 	virtual void InData(ifstream& ifst) = 0; // ââîä
@@ -16,8 +15,8 @@ public:
 	// сравнение двух объектов
 	bool Compare(shape& other);
 };
-class ccomplex: public shape
-{
+
+class ccomplex: public shape {
 	double real, imag; // äåéñòâèòåëüíàÿ è ìíèìàÿ ÷àñòè
 	public:
 		void InData(ifstream& ifst); // ââîä
@@ -26,8 +25,8 @@ class ccomplex: public shape
 		ccomplex() {} // ñîçäàíèå áåç èíèöèàëèçàöèè.
 		void OutComplex(ofstream& ofst);
 };
-class fractions: public shape
-{
+
+class fractions: public shape {
 	int x, y; // ÷èñëèòåëü è çíàìåíàòåëü
 	std::string unit; // добавление нового поля в специализацию
 	public:
@@ -36,8 +35,8 @@ class fractions: public shape
 		double Real(); // приведение к действительному
 		fractions() {} // ñîçäàíèå áåç èíèöèàëèçàöèè.
 };
-class polar_coordinates : public shape
-{
+
+class polar_coordinates : public shape {
 	double angle;
 	int distance;
 	public:
@@ -45,18 +44,18 @@ class polar_coordinates : public shape
 		void Out(ofstream& ofst); // вывод
 		polar_coordinates() {} // создание без инициализации.
 };
-// Ïðîñòåéøèé êîíòåéíåð íà îñíîâå îäíîìåðíîãî ìàññèâà
+
 class container {
-	enum { max_len = 100 }; // ìàêñèìàëüíàÿ äëèíà
-	int len; // òåêóùàÿ äëèíà
+	enum { max_len = 100 }; 
+	int len; 
 	shape *cont[max_len];
 	public: 
-		void In(ifstream& ifst); // ââîä
-		void Out(ofstream& ofst); // âûâîä
+		void In(ifstream& ifst); 
+		void Out(ofstream& ofst); 
 		void Real(ofstream& ofst); 
 		void Sort(); // сортировка контейнерa
-		void Clear(); // î÷èñòêà êîíòåéíåðà îò ôèãóð
-		container(); // èíèöèàëèçàöèÿ êîíòåéíåðà
-		~container() { Clear(); } // óòèëèçàöèÿ êîíòåéíåðà
+		void Clear(); 
+		container(); 
+		~container() { Clear(); } 
 		void OutComplex(ofstream& ofst);
 };
