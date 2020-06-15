@@ -6,7 +6,24 @@
 using namespace std;
 void ccomplex::InData(ifstream& ifst)
 {
-    ifst >> real >> imag;
+    bool flag = 1;
+    ifst >> real;
+    if (ifst.fail())
+        flag = 0;
+    if (ifst.eof())
+        flag = 0;
+    if (real <= 0)
+        flag = 0;
+    ifst >> imag;
+    if (imag <= 0)
+        flag = 0;
+    if (ifst.fail())
+        flag = 0;
+    if (ifst.eof())
+        flag = 0;
+    if (flag == 0) {
+        cout << "\n\n\nError input comlex numbers" << endl << endl << endl;
+    }
 }
 void ccomplex::Out(ofstream& ofst)
 {
@@ -19,14 +36,37 @@ double ccomplex::Real()
 }
 void fractions::InData(ifstream& ifst)
 {
-    ifst >> x >> y;
+    bool flag = 1;
+    ifst >> x;
+    if (ifst.fail())
+        flag = 0;
+    if (ifst.eof())
+        flag = 0;
+    if (x <= 0)
+        flag = 0;
+    ifst >> y;
+    if (ifst.fail())
+        flag = 0;
+    if (ifst.eof())
+        flag = 0;
+    if (y <= 0)
+        flag = 0;
     int amount;
     ifst >> amount;
+    if (amount <= 0)
+        flag = 0;
     for (int i = 0; i < amount; i++)
     {
         char sb;
         ifst >> sb;
+        if (ifst.fail())
+            flag = 0;
+        if (ifst.eof())
+            flag = 0;
         unit.push_back(sb);
+    }
+    if (flag == 0) {
+        cout << "\n\n\nError input fractions numbers" << endl << endl << endl;
     }
 }
 void fractions::Out(ofstream& ofst)
@@ -38,7 +78,24 @@ void fractions::Out(ofstream& ofst)
 }
 void polar_coordinates::InData(ifstream& ifst)
 {
-    ifst >> angle >> distance;
+    bool flag = 1;
+    ifst >> angle;
+    if (ifst.fail())
+        flag = 0;
+    if (ifst.eof())
+        flag = 0;
+    if (angle <= 0)
+        flag = 0;
+    ifst >> distance;
+    if (ifst.fail())
+        flag = 0;
+    if (ifst.eof())
+        flag = 0;
+    if (distance <= 0)
+        flag = 0;
+    if (flag == 0) {
+        cout << "\n\n\nError input polar coordinates" << endl << endl << endl;
+    }
 }
 void polar_coordinates::Out(ofstream& ofst)
 {
